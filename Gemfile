@@ -7,6 +7,12 @@ gem 'rails', '3.2.8'
 
 group :development do
   gem 'sqlite3'
+  gem 'awesome_print'
+  gem 'pry', :require => false
+  gem 'pry-debugger', :require => false
+  gem 'pry-stack_explorer', :require => false
+  gem 'better_errors'
+  gem 'awesome_print'
 end
 group :production do
   gem 'pg'
@@ -27,7 +33,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'themoviedb'
+gem 'haml'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
