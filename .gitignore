@@ -17,10 +17,14 @@ public/uploads
 tmp
 logs
 
+#Ignore config files containing secret keys and such
+themoviedb.yml
+
 # Ignore other unneeded files.
 database.yml
 doc/
 *.swp
+*.swo
 *~
 .project
 .DS_Store

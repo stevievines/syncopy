@@ -1,0 +1,8 @@
+development:
+  api_key: '6e6c104064b6bffec90b0105d58cfe8e'
+
+test:
+  api_key: 'test_key'
+
+production:
+  api_key: '6e6c104064b6bffec90b0105d58cfe8e'

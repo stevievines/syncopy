@@ -1,20 +1,11 @@
 class MoviesController < ApplicationController
-
-  def test_popular
-    options = { body: { api_key: '6e6c104064b6bffec90b0105d58cfe8e'}}
-    client.get("#{endpoint}/popular", options)['results']
-  end
+  include MoviesHelper
 
   def index
-    @movies = test_popular
+    @popular = get_popular_movies
+    @upcoming = get_upcoming_movies
+    @now_playing = get_now_playing_movies
+    @top_rated = get_top_rated_movies
   end
 
-  private
-    def endpoint
-      'http://api.themoviedb.org/3/movie'
-    end
-
-    def client
-      HTTParty
-    end
 end

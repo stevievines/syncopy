@@ -34,6 +34,4 @@ Syncopy::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  Tmdb::Api.key('6e6c104064b6bffec90b0105d58cfe8e')
 end
