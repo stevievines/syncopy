@@ -25,24 +25,12 @@ module MoviesHelper
         apikey: ROTTENTOMATOES_CONFIG['api_key']
       }
     }
-    JSON.parse(client.get(rt_endpoint, options))["movies"]
+    JSON.parse(client.get("#{rt_endpoint}/movies/in_theaters.json", options))["movies"]
   end
 
   private
     def get_movies(category)
       options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] }}
-      client.get("#{tmdb_endpoint}/#{category}", options)['results']
-    end
-
-    def tmdb_endpoint
-      'http://api.themoviedb.org/3/movie'
-    end
-
-    def rt_endpoint
-      'http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json'
-    end
-
-    def client
-      HTTParty
+      client.get("#{tmdb_endpoint}/movie/#{category}", options)['results']
     end
 end

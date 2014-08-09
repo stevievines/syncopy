@@ -1,0 +1,14 @@
+%nav.navbar.navbar-inverse{role: "navigation"}
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: root_url} Now Playing
+    #navbar-collapse-1.collapse.navbar-collapse
+      %form.navbar-form{action: '/search/index', method: 'get'}
+        .form-group
+          %input.form-control{name: 'query', value: '', placeholder: "Search", type: "text"}/
+        -#%button.btn.btn-default{type: "submit"} Submit

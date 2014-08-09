@@ -1,7 +1,6 @@
 Syncopy::Application.routes.draw do
-  get "welcome/index"
-
   get "movies/index"
+  get "search/index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

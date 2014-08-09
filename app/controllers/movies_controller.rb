@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
   include MoviesHelper
+  include ApplicationHelper
 
   def index
     @popular = get_popular_movies
