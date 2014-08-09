@@ -10,8 +10,11 @@
       %tr
         %td= movie['title']
         %td
-          - date = Date.parse(movie['release_date'])
-          = date.strftime("%B #{date.day.ordinalize}, %Y")
+          - if movie['release_date'].blank?
+            Unknown
+          -else
+            - date = Date.parse(movie['release_date'])
+            = date.strftime("%B #{date.day.ordinalize}, %Y")
         %td= movie['popularity'].to_i
 .h1 People
 %table.table.table-hover

@@ -10,8 +10,11 @@
       %tr
         %td= movie['title']
         %td
-          - date = Date.parse(movie['release_date'])
-          = date.strftime("%a, %B #{date.day.ordinalize}")
+          - if movie['release_date'].blank?
+            Unknown
+          -else
+            - date = Date.parse(movie['release_date'])
+            = date.strftime("%B #{date.day.ordinalize}, %Y")
         %td= movie['popularity'].to_i
 .h3 Upcoming
 %table.table.table-hover
@@ -25,8 +28,11 @@
       %tr
         %td= movie['title']
         %td
-          - date = Date.parse(movie['release_date'])
-          = date.strftime("%a, %B #{date.day.ordinalize}")
+          - if movie['release_date'].blank?
+            Unknown
+          -else
+            - date = Date.parse(movie['release_date'])
+            = date.strftime("%B #{date.day.ordinalize}, %Y")
         %td= movie['popularity'].to_i
 .h1 Now Playing
 %table.table.table-hover
@@ -40,8 +46,11 @@
       %tr
         %td= movie['title']
         %td
-          - date = Date.parse(movie['release_date'])
-          = date.strftime("%a, %B #{date.day.ordinalize}")
+          - if movie['release_date'].blank?
+            Unknown
+          -else
+            - date = Date.parse(movie['release_date'])
+            = date.strftime("%B #{date.day.ordinalize}, %Y")
         %td= movie['popularity'].to_i
 .h1 Top Rated
 %table.table.table-hover
@@ -55,8 +64,11 @@
       %tr
         %td= movie['title']
         %td
-          - date = Date.parse(movie['release_date'])
-          = date.strftime("%a, %B #{date.day.ordinalize}")
+          - if movie['release_date'].blank?
+            Unknown
+          -else
+            - date = Date.parse(movie['release_date'])
+            = date.strftime("%B #{date.day.ordinalize}, %Y")
         %td= movie['popularity'].to_i
 .h1 In Theaters (via RottenTomatoes)
 %table.table.table-hover
