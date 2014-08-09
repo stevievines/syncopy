@@ -19,6 +19,7 @@ logs
 
 #Ignore config files containing secret keys and such
 themoviedb.yml
+rottentomatoes.yml
 
 # Ignore other unneeded files.
 database.yml
