@@ -12,7 +12,6 @@ group :development do
   gem 'pry-debugger', :require => false
   gem 'pry-stack_explorer', :require => false
   gem 'better_errors'
-  gem 'awesome_print'
 end
 group :production do
   gem 'pg'

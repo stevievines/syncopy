@@ -6,6 +6,7 @@ class MoviesController < ApplicationController
     @upcoming = get_upcoming_movies
     @now_playing = get_now_playing_movies
     @top_rated = get_top_rated_movies
+    @rottentomatoes = get_in_theatres_tomatoes
   end
 
 end

@@ -14,3 +14,7 @@
 .well
   -@top_rated.each do |movie|
     %p= movie['title']
+.h1 rotten-tomatoes in theatres
+.well
+  -@rottentomatoes.each do |movie|
+    %p= "#{movie['title']}, #{movie['ratings']['critics_score']}"

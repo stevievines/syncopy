@@ -1,0 +1,8 @@
+development:
+  api_key: '7vu3tdkdr7vjmxsvj97jn9m4'
+
+test:
+  api_key: 'test_key'
+
+production:
+  api_key: '7vu3tdkdr7vjmxsvj97jn9m4'
