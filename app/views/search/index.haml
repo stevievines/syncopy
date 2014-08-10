@@ -1,21 +1,8 @@
 .h1 Movies
-%table.table.table-hover
-  %thead
-    %tr
-      %th Title
-      %th Release Date
-      %th Popularity
-  %tbody
-    -@movies.each do |movie|
-      %tr
-        %td= movie['title']
-        %td
-          - if movie['release_date'].blank?
-            Unknown
-          -else
-            - date = Date.parse(movie['release_date'])
-            = date.strftime("%B #{date.day.ordinalize}, %Y")
-        %td= movie['popularity'].to_i
+%table.table.table-hover.table-responsive
+  = render 'table_partial/table_base'
+  - @movies.each do |movie|
+    = render 'table_partial/table_row', locals: { movie: movie }
 .h1 People
 %table.table.table-hover
   %thead

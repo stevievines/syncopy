@@ -4,10 +4,11 @@ module ApplicationHelper
   end
 
   def rt_endpoint
-    'http://api.rottentomatoes.com/api/public/v1.0/lists'
+    'http://api.rottentomatoes.com/api/public/v1.0'
   end
 
   def client
     HTTParty
   end
+
 end

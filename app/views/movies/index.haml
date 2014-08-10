@@ -1,29 +1,39 @@
-%h2 Popular
-%table.table.table-hover.table-responsive
-  = render 'table_partial/tmdb_table_base'
-  - @popular.each do |movie|
-    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
+%ul#movieTab.nav.nav-tabs{role: "tablist"}
+  %li.active
+    %a{href:"#now_playing", role: "tab", "data-toggle" => "tab"} Now Playing
+  %li
+    %a{href:"#upcoming", role: "tab", "data-toggle" => "tab"} Upcoming
+  %li
+    %a{href:"#popular", role: "tab", "data-toggle" => "tab"} Popular
+  %li
+    %a{href:"#top_rated", role: "tab", "data-toggle" => "tab"} Top Rated
 
-%h2 Upcoming
-%table.table.table-hover.table-responsive
-  = render 'table_partial/tmdb_table_base'
-  - @upcoming.each do |movie|
-    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
+.tab-content
+  #now_playing.tab-pane.fade.in.active
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/table_base'
+      - @now_playing.each do |movie|
+        = render 'table_partial/table_row', locals: { movie: movie }
+  #upcoming.tab-pane.fade
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/table_base'
+      - @upcoming.each do |movie|
+        = render 'table_partial/table_row', locals: { movie: movie }
+  #popular.tab-pane.fade
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/table_base'
+      - @popular.each do |movie|
+        = render 'table_partial/table_row', locals: { movie: movie }
+  #top_rated.tab-pane.fade
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/table_base'
+      - @top_rated.each do |movie|
+        = render 'table_partial/table_row', locals: { movie: movie }
 
-%h2 Now Playing
-%table.table.table-hover.table-responsive
-  = render 'table_partial/tmdb_table_base'
-  - @now_playing.each do |movie|
-    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
 
-%h2 Top Rated
-%table.table.table-hover.table-responsive
-  = render 'table_partial/tmdb_table_base'
-  - @top_rated.each do |movie|
-    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
 
-%h2 In Theaters (via RottenTomatoes)
-%table.table.table-hover.table-responsive
-  = render 'table_partial/rt_table_base'
-  - @rottentomatoes.each do |movie|
-    = render 'table_partial/rt_table_row', locals: { movie: movie }
+:javascript
+  $('#movieTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })

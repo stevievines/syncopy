@@ -1,6 +1,6 @@
 - movie = locals[:movie]
 - if movie['release_date'].blank?
-  date = Unknown
+  - date = 'Unknown'
 -else
   - date = Date.parse(movie['release_date'])
   - date = date.strftime("%b #{date.day.ordinalize}, %Y")
@@ -9,4 +9,12 @@
     %td.col-md-6= link_to(movie['title'], movie_path(movie['id']))
     %td.col-md-4= date
     %td.col-md-2= movie['popularity'].to_i
-    %td.col-md-2= movie['popularity'].to_i
+    %td.col-md-2
+      - vote_count = movie['vote_count']
+      %a.vote-tooltip{href: '#',
+        'data-toggle' => 'tooltip',
+        'data-placement' => 'right',
+        title: "#{pluralize(vote_count, 'vote')}"}= movie['vote_average']
+
+:javascript
+  $('.vote-tooltip').tooltip()
