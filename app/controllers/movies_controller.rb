@@ -10,4 +10,8 @@ class MoviesController < ApplicationController
     @rottentomatoes = get_in_theatres_tomatoes
   end
 
+  def show
+    @movie = find_movie(params[:id])
+  end
+
 end

@@ -1,0 +1,10 @@
+.container-fluid
+  .row-fluid
+    .span2
+      -url = 'http://image.tmdb.org/t/p'
+      = image_tag("#{url}/w154#{@movie['poster_path']}") if @movie['poster_path']
+      %h4= @movie['title']
+      = link_to "http://www.imdb.com/title/#{@movie['imdb_id']}", target: '_blank' do
+        IMDb
+    .span10
+      %h2 Nother Span

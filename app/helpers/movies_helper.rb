@@ -1,5 +1,10 @@
 module MoviesHelper
 
+  def find_movie(id)
+    options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] } }
+    client.get("#{tmdb_endpoint}/movie/#{id}", options)
+  end
+
   def get_upcoming_movies
     get_movies('upcoming')
   end
