@@ -1,16 +1,35 @@
-.h1 Movies
-%table.table.table-hover.table-responsive
-  = render 'table_partial/table_base'
-  - @movies.each do |movie|
-    = render 'table_partial/table_row', locals: { movie: movie }
-.h1 People
-%table.table.table-hover
-  %thead
-    %tr
-      %th Name
-      %th Popularity
-  %tbody
-    -@people.each do |person|
-      %tr
-        %td= person['name']
-        %td= person['popularity'].to_i
+%ul#searchTab.nav.nav-tabs{role: "tablist"}
+  %li.active
+    %a{href:"#movies", role: "tab", "data-toggle" => "tab"} Movies
+  %li
+    %a{href:"#people", role: "tab", "data-toggle" => "tab"} People
+
+.tab-content
+  #movies.tab-pane.fade.in.active
+    - if @movies.empty?
+      .text-muted No Movies Found
+    -else
+      %table.table.table-hover.table-responsive
+        = render 'table_partial/table_base'
+        - @movies.each do |movie|
+          = render 'table_partial/table_row', locals: { movie: movie }
+  #people.tab-pane.fade
+    - if @people.empty?
+      .text-muted No People Found
+    -else
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Name
+            %th Popularity
+        %tbody
+          -@people.each do |person|
+            %tr
+              %td= person['name']
+              %td= person['popularity'].to_i
+
+:javascript
+  $('#movieTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
