@@ -1,4 +1,4 @@
-.h2 Popular
+%h2 Popular
 %table.table.table-hover
   %thead
     %tr
@@ -8,7 +8,7 @@
   %tbody
     -@popular.each do |movie|
       %tr
-        %td= movie['title']
+        %td= link_to(movie['title'], movie_path(movie['id']))
         %td
           - if movie['release_date'].blank?
             Unknown
@@ -26,7 +26,7 @@
   %tbody
     -@upcoming.each do |movie|
       %tr
-        %td= movie['title']
+        %td= link_to(movie['title'], movie_path(movie['id']))
         %td
           - if movie['release_date'].blank?
             Unknown
@@ -44,7 +44,7 @@
   %tbody
     -@now_playing.each do |movie|
       %tr
-        %td= movie['title']
+        %td= link_to(movie['title'], movie_path(movie['id']))
         %td
           - if movie['release_date'].blank?
             Unknown
@@ -62,7 +62,7 @@
   %tbody
     -@top_rated.each do |movie|
       %tr
-        %td= movie['title']
+        %td= link_to(movie['title'], movie_path(movie['id']))
         %td
           - if movie['release_date'].blank?
             Unknown
@@ -80,7 +80,7 @@
   %tbody
     -@rottentomatoes.each do |movie|
       %tr
-        %td= movie['title']
+        %td= link_to(movie['title'], movie_path(movie['id']))
         %td
           - date = Date.parse(movie['release_dates']['theater'])
           = date.strftime("%a, %B #{date.day.ordinalize}")
