@@ -1,87 +1,29 @@
-.h2 Popular
-%table.table.table-hover
-  %thead
-    %tr
-      %th Title
-      %th Release Date
-      %th Popularity
-  %tbody
-    -@popular.each do |movie|
-      %tr
-        %td= movie['title']
-        %td
-          - if movie['release_date'].blank?
-            Unknown
-          -else
-            - date = Date.parse(movie['release_date'])
-            = date.strftime("%B #{date.day.ordinalize}, %Y")
-        %td= movie['popularity'].to_i
-.h3 Upcoming
-%table.table.table-hover
-  %thead
-    %tr
-      %th Title
-      %th Release Date
-      %th Popularity
-  %tbody
-    -@upcoming.each do |movie|
-      %tr
-        %td= movie['title']
-        %td
-          - if movie['release_date'].blank?
-            Unknown
-          -else
-            - date = Date.parse(movie['release_date'])
-            = date.strftime("%B #{date.day.ordinalize}, %Y")
-        %td= movie['popularity'].to_i
-.h1 Now Playing
-%table.table.table-hover
-  %thead
-    %tr
-      %th Title
-      %th Release Date
-      %th Popularity
-  %tbody
-    -@now_playing.each do |movie|
-      %tr
-        %td= movie['title']
-        %td
-          - if movie['release_date'].blank?
-            Unknown
-          -else
-            - date = Date.parse(movie['release_date'])
-            = date.strftime("%B #{date.day.ordinalize}, %Y")
-        %td= movie['popularity'].to_i
-.h1 Top Rated
-%table.table.table-hover
-  %thead
-    %tr
-      %th Title
-      %th Release Date
-      %th Popularity
-  %tbody
-    -@top_rated.each do |movie|
-      %tr
-        %td= movie['title']
-        %td
-          - if movie['release_date'].blank?
-            Unknown
-          -else
-            - date = Date.parse(movie['release_date'])
-            = date.strftime("%B #{date.day.ordinalize}, %Y")
-        %td= movie['popularity'].to_i
-.h1 In Theaters (via RottenTomatoes)
-%table.table.table-hover
-  %thead
-    %tr
-      %th Title
-      %th Release Date
-      %th Critics Score
-  %tbody
-    -@rottentomatoes.each do |movie|
-      %tr
-        %td= movie['title']
-        %td
-          - date = Date.parse(movie['release_dates']['theater'])
-          = date.strftime("%a, %B #{date.day.ordinalize}")
-        %td= movie['ratings']['critics_score']
+%h2 Popular
+%table.table.table-hover.table-responsive
+  = render 'table_partial/tmdb_table_base'
+  - @popular.each do |movie|
+    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
+
+%h2 Upcoming
+%table.table.table-hover.table-responsive
+  = render 'table_partial/tmdb_table_base'
+  - @upcoming.each do |movie|
+    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
+
+%h2 Now Playing
+%table.table.table-hover.table-responsive
+  = render 'table_partial/tmdb_table_base'
+  - @now_playing.each do |movie|
+    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
+
+%h2 Top Rated
+%table.table.table-hover.table-responsive
+  = render 'table_partial/tmdb_table_base'
+  - @top_rated.each do |movie|
+    = render 'table_partial/tmdb_table_row', locals: { movie: movie }
+
+%h2 In Theaters (via RottenTomatoes)
+%table.table.table-hover.table-responsive
+  = render 'table_partial/rt_table_base'
+  - @rottentomatoes.each do |movie|
+    = render 'table_partial/rt_table_row', locals: { movie: movie }

@@ -1,0 +1,12 @@
+- movie = locals[:movie]
+- if movie['release_date'].blank?
+  date = Unknown
+-else
+  - date = Date.parse(movie['release_date'])
+  - date = date.strftime("%b #{date.day.ordinalize}, %Y")
+%ul
+  %tr.row.clearfix
+    %td.col-md-6= link_to(movie['title'], movie_path(movie['id']))
+    %td.col-md-4= date
+    %td.col-md-2= movie['popularity'].to_i
+    %td.col-md-2= movie['popularity'].to_i
