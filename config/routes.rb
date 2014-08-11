@@ -1,4 +1,7 @@
 Syncopy::Application.routes.draw do
+  get "users/new"
+  match '/signup', to: 'users#new', via: 'get'
+
   get "movies/index"
   get "search/index"
   match 'search' => "search#index"
