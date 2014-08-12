@@ -13,9 +13,15 @@ group :development do
   gem 'pry-stack_explorer', :require => false
   gem 'better_errors'
 end
+
 group :production do
   gem 'pg'
   gem 'rails_12factor'
+end
+
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
 
@@ -35,8 +41,7 @@ gem 'jquery-rails'
 gem 'httparty'
 gem 'haml'
 gem 'haml-rails'
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
