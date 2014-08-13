@@ -29,7 +29,7 @@ describe User do
 
   describe "return value of authenticate method" do
     before { @user.save }
-    let(:found_user) { User.find_by_email(@user.email) }
+    let(:found_user) { User.find_by(email: @user.email) }
 
     describe "with valid password" do
       it { should eq found_user.authenticate(@user.password) }
@@ -38,8 +38,8 @@ describe User do
     describe "with invalid password" do
       let(:user_for_invalid_password) { found_user.authenticate("invalid") }
 
-      it { should_not eq user_for_invalid_password }
-      specify { expect(user_for_invalid_password).to be_false }
+      it { should_not == user_for_invalid_password }
+      specify {user_for_invalid_password.should be_false }
     end
 
     describe "with a password that's too short" do
