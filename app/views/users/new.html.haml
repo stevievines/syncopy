@@ -3,19 +3,21 @@
 
 .row
   .span6.offset3
-    = form_for(@user) do |f|
-      = render 'shared/error_messages', object: f.object
-
-      = f.label :name
-      = f.text_field :name
-
-      = f.label :email
-      = f.text_field :email
-
-      = f.label :password
-      = f.password_field :password
-
-      = f.label :password_confirmation, "Confirmation"
-      = f.password_field :password_confirmation
-
-      = f.submit "Create my account", class: "btn btn-large btn-primary"
+    %form#new_user.new_user{"accept-charset" => "UTF-8", :action => "/users", :method => "post", :role => "form"}
+      = render 'shared/error_messages'
+      %div{:style => "display:none"}
+        %input{:name => "utf8", :type => "hidden", :value => "&#x2713;"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => params[:authenticity_token]}/
+      .form-group
+        %label{:for => "user_name"} Name
+        %input#user_name.form-control{:name => 'user[name]', :placeholder => "Enter name", :type => "text"}/
+      .form-group
+        %label{:for => "user_email"} Email address
+        %input#user_email.form-control{:name => 'user[email]', :placeholder => "Enter email", :type => "email"}/
+      .form-group
+        %label{:for => "user_password"} Password
+        %input#user_password.form-control{:name => 'user[password]', :placeholder => "Password", :type => "password"}/
+      .form-group
+        %label{:for => "user_password_confirmation"} Password Confirmation
+        %input#user_confirmation.form-control{:name => 'user[password_confirmation]', :placeholder => "Confirmation", :type => "password"}/
+      %button#submit.btn.btn-large.btn-primary{:type => "submit"} Create my account
