@@ -33,9 +33,13 @@ group :production do
 end
 
 group :development, :test do
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '4.2.0'
   gem 'minitest'
   gem 'rspec-rails', '2.13.1'
+end
+
+group :test do
+  gem 'capybara', '2.1.0'
 end
 
 # To use Jbuilder templates for JSON
