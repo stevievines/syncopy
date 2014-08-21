@@ -1,0 +1,18 @@
+- provide(:title, 'Sign in')
+%h1 Sign in
+
+.row
+  .span6.offset3
+    %form#new_session.new_session{"accept-charset" => "UTF-8", :action => "/sessions", :method => "post"}
+      %div{:style => "display:none"}
+        %input{:name => "utf8", :type => "hidden", :value => "&#x2713;"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => params[:authenticity_token]}/
+      .form-group
+        %label{:for => "session_email"} Email address
+        %input#session_email.form-control{:name => 'session[email]', :placeholder => "Enter email", :type => "email"}/
+      .form-group
+        %label{:for => "session_password"} Password
+        %input#session_password.form-control{:name => 'session[password]', :placeholder => "Password", :type => "password"}/
+      %button#submit.btn.btn-large.btn-primary{:type => "submit"} Sign in
+    %p
+      New user? #{link_to "Sign up now!", signup_path}

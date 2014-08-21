@@ -24,6 +24,6 @@ module MoviesHelper
   private
     def get_movies(list)
       options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] }}
-      client.get("#{tmdb_endpoint}/movie/#{list}", options)['results']
+      Array.wrap(client.get("#{tmdb_endpoint}/movie/#{list}", options)['results'])
     end
 end

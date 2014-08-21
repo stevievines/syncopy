@@ -9,8 +9,20 @@
       %a.navbar-brand{href: root_url} Movies
     #navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{href: signup_path} Sign Up
+        - if signed_in?
+          %li#fat-menu.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Account
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to "Profile", current_user
+              %li= link_to "Settings", '#'
+              %li.divider
+              %li
+                = link_to "Sign out", signout_path, method: "delete"
+        - else
+          %li
+            %a{href: signin_path} Sign In
       %form.navbar-form.navbar-search{action: '/search/index', method: 'get'}
         .form-group
           %input.form-control{name: 'query', value: '', placeholder: "Search", type: "text"}/
