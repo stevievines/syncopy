@@ -1,0 +1,28 @@
+- provide(:title, 'Edit user')
+%h1 Update your profile
+
+.row
+  .span6.offset3
+    %form.edit_user{:id => "edit_user_#{@user.id}", "accept-charset" => "UTF-8", :action => "/users/#{@user.id}", :method => "post"}
+      = render 'shared/error_messages'
+      %div{:style => "display:none"}
+        %input{:name => "utf8", :type => "hidden", :value => "&#x2713;"}/
+        %input{:name => "_method", :type => "hidden", :value => "patch"}/
+        %input{:name => "authenticity_token", :type => "hidden", :value => params[:authenticity_token]}/
+      .form-group
+        %label{:for => "user_name"} Name
+        %input#user_name.form-control{:name => 'user[name]', :value => @user.name, :type => "text"}/
+      .form-group
+        %label{:for => "user_email"} Email address
+        %input#user_email.form-control{:name => 'user[email]', :type => "email"}/
+      .form-group
+        %label{:for => "user_password"} Password
+        %input#user_password.form-control{:name => 'user[password]', :placeholder => "Password", :type => "password"}/
+      .form-group
+        %label{:for => "user_password_confirmation"} Confirm Password
+        %input#user_confirmation.form-control{:name => 'user[password_confirmation]', :placeholder => "Confirm Password", :type => "password"}/
+      %button#submit.btn.btn-large.btn-primary{:type => "submit"} Save changes
+
+    = gravatar_for(@user)
+    %a{href: "http://gravatar.com/emails"} Swap that headshot
+

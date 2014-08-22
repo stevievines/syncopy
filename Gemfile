@@ -35,7 +35,7 @@ end
 group :development, :test do
   gem 'factory_girl_rails', '4.2.0'
   gem 'minitest'
-  gem 'rspec-rails', '2.13.1'
+  gem 'rspec-rails', '~> 2.14.0'
 end
 
 group :test do
