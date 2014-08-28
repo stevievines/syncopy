@@ -5,6 +5,16 @@ module MoviesHelper
     client.get("#{tmdb_endpoint}/movie/#{id}", options)
   end
 
+  def get_videos(id)
+    options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] } }
+    client.get("#{tmdb_endpoint}/movie/#{id}/videos", options)['results']
+  end
+
+  def get_credits(id)
+    options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] } }
+    client.get("#{tmdb_endpoint}/movie/#{id}/credits", options)
+  end
+
   def get_upcoming_movies
     get_movies('upcoming')
   end

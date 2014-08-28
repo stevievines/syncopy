@@ -1,10 +1,55 @@
 .container-fluid
   .row-fluid
-    .span2
+    .col-md-3
       -url = 'http://image.tmdb.org/t/p'
-      = image_tag("#{url}/w154#{@movie['poster_path']}") if @movie['poster_path']
-      %h4= @movie['title']
-      = link_to "http://www.imdb.com/title/#{@movie['imdb_id']}", target: '_blank' do
-        IMDb
-    .span10
-      %h2 Nother Span
+      %p
+        = image_tag("#{url}/w154#{@movie['poster_path']}") if @movie['poster_path']
+      Runtime: #{@movie['runtime']} minutes
+      %br
+      Budget: $#{number_to_human(@movie['budget'], :precision => 3)}
+      %br
+      Box Office: $#{number_to_human(@movie['revenue'], :precision => 3)}
+      %br
+      %br
+      - if @imdb_link
+        = link_to @imdb_link, target: '_blank' do
+          IMDb
+        %br
+      - if @movie['homepage']
+        = link_to @movie['homepage'], target: '_blank' do
+          Webpage
+        %br
+      - @videos.each do |video|
+        = link_to  "http://www.youtube.com/watch?v=#{video['key']}", target: '_blank' do
+          #{video['name']}
+          %br
+    .col-md-9
+      %h2.text-left
+        = @movie['title']
+        %small= "Directed by #{@directors.join(', ')}"
+      %p
+        = @movie['overview']
+
+      %ul#creditsTab.nav.nav-pills{role: "tablist"}
+        %li.active
+          %a{href:"#cast", role: "tab", "data-toggle" => "tab"} Cast
+        %li
+          %a{href:"#crew", role: "tab", "data-toggle" => "tab"} Crew
+
+      .tab-content
+        #cast.tab-pane.fade.in.active
+          %table.table.table-hover.table-responsive
+            = render 'table_partial/cast_base'
+            - @cast.each do |member|
+              = render 'table_partial/cast_row', locals: { member: member }
+        #crew.tab-pane.fade
+          %table.table.table-hover.table-responsive
+            = render 'table_partial/crew_base'
+            - @crew.each do |member|
+              = render 'table_partial/crew_row', locals: { member: member }
+
+:javascript
+  $('#movieTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
