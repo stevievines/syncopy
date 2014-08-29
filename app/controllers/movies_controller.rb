@@ -14,7 +14,9 @@ class MoviesController < ApplicationController
     @videos = get_videos(params[:id])
 
     images = get_images(params[:id])
-    @posters = images['posters']
+    @english_posters = Array.wrap(images['posters']).select do |poster|
+      poster["iso_639_1"] == "en"
+    end
 
     credits = get_credits(params[:id])
     @cast = credits['cast']

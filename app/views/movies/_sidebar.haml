@@ -23,7 +23,7 @@
   = link_to @imdb_link, target: '_blank' do
     IMDb
   %br
-- if @movie['homepage']
+- if @movie['homepage'].present?
   = link_to @movie['homepage'], target: '_blank' do
     Webpage
   %br
