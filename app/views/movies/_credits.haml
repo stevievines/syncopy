@@ -1,0 +1,24 @@
+%ul#creditsTab.nav.nav-pills{role: "tablist"}
+  %li.active
+    %a{href:"#cast", role: "tab", "data-toggle" => "tab"} Cast
+  %li
+    %a{href:"#crew", role: "tab", "data-toggle" => "tab"} Crew
+
+.tab-content
+  #cast.tab-pane.fade.in.active
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/cast_base'
+      - @cast.each do |member|
+        = render 'table_partial/cast_row', locals: { member: member }
+  #crew.tab-pane.fade
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/crew_base'
+      - @crew.each do |member|
+        = render 'table_partial/crew_row', locals: { member: member }
+
+:javascript
+  $('#movieTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+

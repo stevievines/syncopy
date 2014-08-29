@@ -72,6 +72,22 @@ $grayMediumLight: #eaeaea;
   @include box_sizing;
 }
 
+/* override bootstrap class for movie sidebar */
+
+.dl-horizontal dt {
+  float: left;
+  width: auto;
+  overflow: hidden;
+  clear: left;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dl-horizontal dd {
+  margin-left: 80px;
+}
+
 /* sidebar */
 
 aside {

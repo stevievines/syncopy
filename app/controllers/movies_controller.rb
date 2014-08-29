@@ -13,8 +13,10 @@ class MoviesController < ApplicationController
     @movie = find_movie(params[:id])
     @videos = get_videos(params[:id])
 
-    credits = get_credits(params[:id])
+    images = get_images(params[:id])
+    @posters = images['posters']
 
+    credits = get_credits(params[:id])
     @cast = credits['cast']
     @crew = credits['crew']
     @directors = @crew.select { |c| c['job'] == 'Director' }.map { |d| d['name'] }

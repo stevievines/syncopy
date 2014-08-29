@@ -10,6 +10,11 @@ module MoviesHelper
     client.get("#{tmdb_endpoint}/movie/#{id}/videos", options)['results']
   end
 
+  def get_images(id)
+    options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] } }
+    client.get("#{tmdb_endpoint}/movie/#{id}/images", options)
+  end
+
   def get_credits(id)
     options = { body: { api_key: THEMOVIEDB_CONFIG['api_key'] } }
     client.get("#{tmdb_endpoint}/movie/#{id}/credits", options)

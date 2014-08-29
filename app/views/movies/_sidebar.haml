@@ -1,0 +1,34 @@
+- if @movie['release_date'].blank?
+  - date = 'Unknown'
+-else
+  - date = Date.parse(@movie['release_date'])
+  - date = date.strftime("%m/%d/%Y")
+%p
+  -url = 'http://image.tmdb.org/t/p'
+  = image_tag("#{url}/w154#{@movie['poster_path']}") if @movie['poster_path']
+%dl.dl-horizontal
+  %dt Release
+  %dd #{date}
+  %dt Runtime
+  %dd #{@movie['runtime']} minutes
+  %dt Budget
+  %dd
+    - budget = @movie['budget'] == 0 ? 'Unknown' : "$#{number_to_human(@movie['budget'], :precision => 3)}"
+    = budget
+  %dt Gross
+  %dd
+    - box_office = @movie['revenue'] == 0 ? 'Unknown' : "$#{number_to_human(@movie['revenue'], :precision => 3)}"
+    = box_office
+- if @imdb_link
+  = link_to @imdb_link, target: '_blank' do
+    IMDb
+  %br
+- if @movie['homepage']
+  = link_to @movie['homepage'], target: '_blank' do
+    Webpage
+  %br
+- @videos.each do |video|
+  = link_to  "http://www.youtube.com/watch?v=#{video['key']}", target: '_blank' do
+    #{video['name']}
+    %br
+

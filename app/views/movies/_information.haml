@@ -1,0 +1,12 @@
+%h1
+  %em
+    ="#{@movie['tagline']}"
+%h2.text-center
+  = @movie['title']
+  %small= "Directed by #{@directors.join(', ')}"
+-#the first poster is the one in the sidebar
+-@posters[1..5].each do |poster|
+  -url = 'http://image.tmdb.org/t/p'
+  = image_tag("#{url}/w154#{poster['file_path']}") if poster['file_path']
+%p
+  = @movie['overview']
