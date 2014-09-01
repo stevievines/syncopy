@@ -51,9 +51,17 @@ describe "User pages" do
 
   describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:list1) { FactoryGirl.create(:list, user: user, title: 'Top Ten') }
+    let!(:list2) { FactoryGirl.create(:list, user: user, title: 'Favorites') }
     before { visit user_path(user) }
+
     it { should have_content(user.name) }
     it { should have_title(user.name) }
+
+    describe 'lists' do
+      it { should have_content(list1.title) }
+      it { should have_content(list2.title) }
+    end
   end
 
   describe "signup page" do

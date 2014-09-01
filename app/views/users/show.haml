@@ -1,7 +1,12 @@
 - provide(:title, @user.name)
-.row
-  %aside.span4
-    %section
+.container-fluid
+  .row-fluid
+    .col-sm-4
       %h1
         = gravatar_for @user
         = @user.name
+      -if @user.lists.any?
+        %h3
+          Lists (#{@user.lists.count})
+          %ol.lists= render @lists
+          =will_paginate @lists

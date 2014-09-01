@@ -13,6 +13,7 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:lists) }
   it { should respond_to(:admin) }
 
   it { should be_valid }
@@ -111,4 +112,21 @@ describe User do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
    end
+
+  describe "list associations" do
+    before { @user.save }
+    let!(:list) do
+      FactoryGirl.create(:list, user: @user, created_at: 1.day.ago)
+    end
+
+    it "should destroy associated lists" do
+      lists = @user.lists.to_a
+      @user.destroy
+      expect(lists).not_to be_empty
+      lists.each do |list|
+        expect(List.where(id: list.id)).to be_empty
+      end
+    end
+  end
+
 end

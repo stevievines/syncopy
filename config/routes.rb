@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :lists
   root 'movies#index'
   get '/movies/:id', to: 'movies#show', as: 'movie'
   get "search/index"
