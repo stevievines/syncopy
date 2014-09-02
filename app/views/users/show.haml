@@ -1,12 +1,20 @@
 - provide(:title, @user.name)
 .container-fluid
   .row-fluid
-    .col-sm-4
-      %h1
-        = gravatar_for @user
-        = @user.name
+    %aside.col-sm-4
+      %section
+        %h1
+          = gravatar_for @user
+          = @user.name
       -if @user.lists.any?
-        %h3
+        %h5.text-muted
           Lists (#{@user.lists.count})
-          %ol.lists= render @lists
-          =will_paginate @lists
+        %ul.list-unstyled
+          %li
+            All (#{@all_list_movies.count})
+        %ul.list-unstyled= render @lists
+    .col-sm-8
+      %h1 All Your Movies
+      %ul.lists
+        - @all_list_movies.each do |movie|
+          %li= link_to(movie.title, movie_path(movie.tmdb_id))

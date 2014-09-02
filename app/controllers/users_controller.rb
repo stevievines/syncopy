@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @lists = @user.lists.paginate(page: params[:page])
+    @all_list_movies = get_all_list_movies
   end
 
   def create
@@ -46,6 +47,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def get_all_list_movies
+      # CAN BE MORE EFFICIENT IF NEED BE!
+      @user.lists.map(&:list_movies).flatten
+    end
 
     def user_params
       params.require(:user).permit(:name, :email, :password,

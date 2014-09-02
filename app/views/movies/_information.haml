@@ -5,8 +5,9 @@
   = @movie['title']
   %small= "Directed by #{@directors.join(', ')}"
 -#the first poster is the one in the sidebar
--@english_posters[1..5].each do |poster|
-  -url = 'http://image.tmdb.org/t/p'
-  = image_tag("#{url}/w154#{poster['file_path']}") if poster['file_path']
+- if @english_posters.any?
+  -@english_posters[1..5].each do |poster|
+    -url = 'http://image.tmdb.org/t/p'
+    = image_tag("#{url}/w154#{poster['file_path']}") if poster['file_path']
 %p
   = @movie['overview']
