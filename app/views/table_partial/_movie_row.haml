@@ -2,4 +2,5 @@
 %ul
   %tr.row.clearfix
     %td.col-md-6= link_to(movie.title, movie_path(movie.tmdb_id))
-    %td.col-md-6= movie.created_at.strftime("%b #{movie.created_at.day.ordinalize}, %Y")
+    %td.col-md-3= movie.release_date.strftime("%b #{movie.created_at.day.ordinalize}, %Y")
+    %td.col-md-3= movie.created_at.strftime("%b #{movie.created_at.day.ordinalize}, %Y")

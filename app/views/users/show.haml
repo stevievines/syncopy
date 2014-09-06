@@ -7,31 +7,7 @@
           = gravatar_for @user
           = @user.name
       -if @user.lists.any?
-        %h5.text-muted
-          Lists (#{@user.lists.count})
-        %ul#creditsTab.nav.nav-pills.nav-stacked{role: "tablist"}
-          %li.active
-            %a{href:"#all", role: "tab", "data-toggle" => "tab"} All (#{@all_list_movies.count})
-          -@lists.each do |list|
-            %li
-              %a{href:"##{list.title.parameterize}", role: "tab", "data-toggle" => "tab"} #{list.title} (#{list.list_movies.count})
-
+        = render 'tabs', locals: { lists: @lists, all_list_movies: @all_list_movies }
+      = render 'new_list'
     .col-sm-8
-      .tab-content
-        #all.tab-pane.fade.in.active
-          %table.table.table-hover.table-responsive
-            = render 'table_partial/movie_base'
-            - @all_list_movies.each do |movie|
-              = render 'table_partial/movie_row', locals: { movie: movie }
-        - @lists.each do |list|
-          .tab-pane.fade{ id: "#{list.title.parameterize}" }
-            %table.table.table-hover.table-responsive
-              = render 'table_partial/movie_base'
-              - list.list_movies.each do |movie|
-                = render 'table_partial/movie_row', locals: { movie: movie }
-
-      :javascript
-        $('#creditsTab a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show')
-        })
+      = render 'lists_content', locals: { lists: @lists, all_list_movies: @all_list_movies }

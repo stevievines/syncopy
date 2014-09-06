@@ -20,12 +20,14 @@ namespace :db do
     dark_knight = {
       tmdb_id: 155,
       imdb_id: "tt0468569",
+      release_date: Date.parse("2008-07-18"),
       title: "The Dark Knight",
       poster_path: "/1hRoyzDtpgMU7Dz4JF22RANzQO7.jpg"
     }
     inception = {
       tmdb_id: 27205,
       imdb_id: "tt1375666",
+      release_date: Date.parse("2010-07-16"),
       title: "Inception",
       poster_path: "/tAXARVreJnWfoANIHASmgYk4SB0.jpg",
     }

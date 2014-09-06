@@ -1,0 +1,25 @@
+.tab-content
+  #all.tab-pane.fade.in.active
+    %table.table.table-hover.table-responsive
+      = render 'table_partial/movie_base'
+      - locals[:all_list_movies].each do |movie|
+        = render 'table_partial/movie_row', locals: { movie: movie }
+  - locals[:lists].each do |list|
+    .tab-pane.fade{id: "#{list.title.parameterize}"}
+      - if list.list_movies.any?
+        %table.table.table-hover.table-responsive
+          = render 'table_partial/movie_base'
+          - list.list_movies.each do |movie|
+            = render 'table_partial/movie_row', locals: { movie: movie }
+      - else
+        %p.text-center
+          %em.text-muted No movies yet
+
+:javascript
+  $('#listTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+
+
+
