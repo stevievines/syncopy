@@ -1,6 +1,6 @@
 class ListsController < ApplicationController
-  before_action :signed_in_user, only: [:create, :destroy]
-  before_action :correct_user,   only: :destroy
+  before_action :signed_in_user, only: [:create, :destroy, :edit]
+  before_action :correct_user,   only: [:destroy, :edit]
 
   def create
     @list = current_user.lists.build(list_params)
@@ -10,6 +10,10 @@ class ListsController < ApplicationController
       flash[:danger] = "Could not create list, make sure you gave the list a title"
     end
       redirect_to current_user
+  end
+
+  def edit
+    binding.pry
   end
 
   def destroy

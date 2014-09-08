@@ -3,7 +3,5 @@
     %a{href:"#all", role: "tab", "data-toggle" => "tab"} All (#{locals[:all_list_movies].count})
   - locals[:lists].each do |list|
     %li
-      %a{href:"##{list.title.parameterize}", role: "tab", "data-toggle" => "tab"} #{list.title} (#{list.list_movies.count})
-      - if current_user?(list.user)
-        = link_to(list_path(list), method: :delete, data: { confirm: "You sure?" }) do
-          %span x
+      - list_label = "#{list.title} (#{list.list_movies.count})"
+      = link_to("#{list_label}","##{list.title.parameterize}", role: "tab", "data-toggle" => "tab")

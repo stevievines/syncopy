@@ -15,6 +15,14 @@
         %p.text-center
           %em.text-muted No movies yet
 
+      - if current_user?(list.user)
+        .col-sm-6.text-left
+          = button_to(edit_list_path(list), method: :get, :class => 'btn btn-primary btn-xs' ) do
+            %span Edit
+        .col-sm-6.text-right
+          = button_to(list_path(list), method: :delete, data: { confirm: "Are you sure? This cannot be undone."}, :class => 'btn btn-primary btn-xs' ) do
+            %span Delete
+
 :javascript
   $('#listTab a').click(function (e) {
     e.preventDefault()
