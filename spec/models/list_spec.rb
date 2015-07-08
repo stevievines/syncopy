@@ -21,4 +21,14 @@ describe List do
     before { @list.title = " " }
     it { should_not be_valid }
   end
+
+  describe 'associations' do
+    let(:movie) { FactoryGirl.create(:movie) }
+    before { @list.list_movies.build(:movie_id => movie.id) }
+
+    describe 'movie methods' do
+      it { should respond_to(:movies) }
+      its(:movies) { should eq [movie] }
+    end
+  end
 end

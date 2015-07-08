@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @lists = @user.lists # .paginate(page: params[:page])
-    @all_list_movies = get_all_list_movies
+    @all_movies = get_all_movies
   end
 
   def create
@@ -48,9 +48,9 @@ class UsersController < ApplicationController
 
   private
 
-    def get_all_list_movies
+    def get_all_movies
       # CAN BE MORE EFFICIENT IF NEED BE!
-      @user.lists.map(&:list_movies).flatten
+      @user.lists.map(&:movies).flatten
     end
 
     def user_params

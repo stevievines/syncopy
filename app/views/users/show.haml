@@ -6,8 +6,8 @@
         %h1
           = gravatar_for @user
           = @user.name
-      -if @user.lists.any?
-        = render 'tabs', locals: { lists: @lists, all_list_movies: @all_list_movies }
+      -if @lists.any?
+        = render 'tabs', locals: { lists: @lists, all_movies: @all_movies }
       = render 'new_list'
     .col-sm-8
-      = render 'lists_content', locals: { lists: @lists, all_list_movies: @all_list_movies }
+      = render 'lists_content', locals: { lists: @lists, all_movies: @all_movies }

@@ -1,6 +1,6 @@
 %ul#listTab.nav.nav-pills.nav-stacked{role: "tablist"}
   %li.active
-    %a{href:"#all", role: "tab", "data-toggle" => "tab"} All (#{locals[:all_list_movies].count})
+    %a{href:"#all", role: "tab", "data-toggle" => "tab"} All (#{locals[:all_movies].count})
   - locals[:lists].each do |list|
     %li
       - list_label = "#{list.title} (#{list.list_movies.count})"

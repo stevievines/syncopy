@@ -1,8 +1,8 @@
 class ListMovie < ActiveRecord::Base
   belongs_to :list
+  belongs_to :movie
 
-  validates :title, presence: true
-  validates :tmdb_id, presence: true
   validates :list_id, presence: true
+  validates :movie_id, presence: true
 end
 

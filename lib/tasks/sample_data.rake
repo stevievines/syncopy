@@ -32,10 +32,12 @@ namespace :db do
       poster_path: "/tAXARVreJnWfoANIHASmgYk4SB0.jpg",
     }
     users.each do |user|
-      top_list = user.lists.first
-      watchlist = user.lists.last
-      top_list.list_movies.create!(inception)
-      watchlist.list_movies.create(dark_knight)
+      top_list = user.lists.where(title: 'Top Ten').first_or_create
+      watchlist = user.lists.where(title: 'To Watch').first_or_create
+      i = Movie.where(inception).first_or_create
+      dk = Movie.where(dark_knight).first_or_create
+      top_list.list_movies.where(movie_id: i.id).first_or_create
+      watchlist.list_movies.where(movie_id: dk.id).first_or_create
     end
   end
 end

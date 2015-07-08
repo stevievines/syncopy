@@ -11,18 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904123237) do
+ActiveRecord::Schema.define(version: 20140909023359) do
 
   create_table "list_movies", force: true do |t|
-    t.string   "title"
-    t.string   "imdb_id"
-    t.integer  "tmdb_id"
     t.integer  "list_id"
-    t.string   "poster_path"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "release_date"
+    t.integer  "movie_id"
   end
+
+  add_index "list_movies", ["movie_id"], name: "index_list_movies_on_movie_id"
 
   create_table "lists", force: true do |t|
     t.string   "title"
@@ -32,6 +31,30 @@ ActiveRecord::Schema.define(version: 20140904123237) do
   end
 
   add_index "lists", ["user_id"], name: "index_lists_on_user_id"
+
+  create_table "movies", force: true do |t|
+    t.string   "backdrop_path"
+    t.string   "poster_path"
+    t.integer  "budget"
+    t.string   "homepage"
+    t.integer  "tmdb_id",        null: false
+    t.string   "imdb_id"
+    t.string   "original_title"
+    t.text     "overview"
+    t.float    "popularity"
+    t.date     "release_date"
+    t.integer  "revenue"
+    t.integer  "runtime"
+    t.string   "status"
+    t.string   "tagline"
+    t.string   "title",          null: false
+    t.float    "vote_average"
+    t.integer  "vote_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "movies", ["tmdb_id"], name: "index_movies_on_tmdb_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
