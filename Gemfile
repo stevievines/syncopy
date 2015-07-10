@@ -24,8 +24,9 @@ gem 'bootstrap-will_paginate', '0.0.10'
 group :development do
   gem 'sqlite3'
   gem 'awesome_print'
+  gem 'byebug'
   gem 'pry', :require => false
-  gem 'pry-debugger', :require => false
+  gem 'pry-byebug', :require => false
   gem 'pry-stack_explorer', :require => false
   gem 'better_errors'
 end
